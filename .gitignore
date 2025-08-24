@@ -1,0 +1,9 @@
+
+*.h5
+*.pt
+*.pth
+*.npy
+__pycache__/
+.ipynb_checkpoints/
+output/
+results/
