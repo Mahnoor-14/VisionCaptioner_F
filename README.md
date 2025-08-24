@@ -1,5 +1,7 @@
 # VisionCaptioner
 
+![VisionCaptioner - Google Chrome 2025-08-24 23-11-14 - frame at 0m17s](https://github.com/user-attachments/assets/1d111363-c6e0-42a1-9d92-c46e1f4879a0)
+
 **VisionCaptioner** is an AI-powered image captioning system that combines **Convolutional Neural Networks (CNNs)** and **Transformers** to automatically generate human-like captions for images.  
 
 It provides a web interface where users can upload images and get meaningful captions in real-time. This project is designed for educational, accessibility, and research purposes.
