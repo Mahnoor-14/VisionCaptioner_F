@@ -1,59 +1,47 @@
 # VisionCaptioner
 
-![VisionCaptioner - Google Chrome 2025-08-24 23-11-14 - frame at 0m17s](https://github.com/user-attachments/assets/1d111363-c6e0-42a1-9d92-c46e1f4879a0)
-
 **VisionCaptioner** is an AI-powered image captioning system that combines **Convolutional Neural Networks (CNNs)** and **Transformers** to automatically generate human-like captions for images.  
 
-It provides a web interface where users can upload images and get meaningful captions in real-time. This project is designed for educational, accessibility, and research purposes.
+This project uses **PyTorch** and provides a pipeline for training, checkpointing, and generating captions using the **COCO 2017 dataset**.  
 
 ---
 
-## 🔹 Features
+## Features
 
-- 📤 Upload images via a simple web interface  
-- 📝 Automatically generate natural language captions  
-- 🎯 Attention-based Transformer decoder for better alignment between image regions & words  
-- 💾 Option to copy or download generated captions  
-- 🌍 Open-source and fully customizable  
-
----
-
-## 🔹 Use Cases
-
-- Accessibility tools for visually impaired users 👁️‍🗨️  
-- Content tagging and indexing 📂  
-- Automated surveillance reporting 🔍  
-- Visual question answering (VQA) 🤖  
+- 📤 Load and preprocess COCO 2017 images and captions  
+- 📝 Automatically generate captions with a Transformer decoder  
+- 🎯 ResNet-50 encoder extracts high-level visual features  
+- 💾 Save and load model checkpoints for training or inference  
+- 🌍 GPU support for faster training  
 
 ---
 
-## 🔹 Tech Stack
+## Tech Stack
 
-- **Frameworks**: PyTorch / TensorFlow  
-- **Modeling**: ResNet-50 (CNN) + Transformer Decoder or LSTM with attention  
+- **Frameworks**: PyTorch, torchvision, transformers  
+- **Modeling**: ResNet-50 encoder + Transformer decoder  
 - **Dataset**: MS COCO 2017 (images + captions)  
-- **Frontend**: Gradio / Flask / Streamlit  
-- **Preprocessing**: OpenCV, torchvision, NLTK / SpaCy  
+- **Preprocessing**: PIL, torchvision.transforms  
+- **Tokenizer**: BERT tokenizer (`bert-base-uncased`)  
 
 ---
 
-## 🔹 Project Workflow
+## Project Workflow
 
-1. **Image Feature Extraction**  
-   - Use ResNet-50 to extract high-level visual features from images.  
+1. **Dataset Preparation**  
+   - Load COCO 2017 images and captions using `COCODataset` class.  
+   - Preprocess images (`224x224` resize, tensor conversion).  
+   - Tokenize captions using BERT tokenizer.  
 
-2. **Caption Generation**  
-   - Use a Transformer or LSTM decoder to generate captions trained on COCO dataset.  
+2. **Model Architecture**  
+   - **EncoderCNN**: Pretrained ResNet-50 extracts image features, followed by a linear layer + batch norm.  
+   - **DecoderTransformer**: Embedding layer, positional encoding, Transformer decoder layers, output linear layer to predict tokens.  
 
 3. **Training**  
-   - Train end-to-end using cross-entropy loss with teacher forcing.  
-   - Fine-tune CNN layers optionally after initial convergence.  
+   - Use cross-entropy loss with teacher forcing.  
+   - Optimizer: Adam on decoder parameters + encoder’s FC layer.  
+   - Checkpoints saved after every epoch.  
 
-4. **Inference**  
-   - Generate captions using greedy decoding or beam search.  
-
-5. **Web Interface**  
-   - User uploads an image → CNN extracts features → Decoder generates caption → Caption displayed on screen.  
-
----
-
+4. **Inference / Caption Generation**  
+   - Load trained checkpoints.  
+   - Preprocess new images and generate captions using `generate_caption()` function.
