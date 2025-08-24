@@ -1,0 +1,3 @@
+conda create -n visioncaptioner python=3.13
+conda activate visioncaptioner
+pip install -r requirements.txt
