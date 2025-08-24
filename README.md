@@ -57,9 +57,3 @@ It provides a web interface where users can upload images and get meaningful cap
 
 ---
 
-## 🔹 Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/Mahnoor-14/VisionCaptioner_F.git
-cd VisionCaptioner_F
