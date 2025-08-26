@@ -3,7 +3,7 @@
 **VisionCaptioner** is an AI-powered image captioning system that combines **Convolutional Neural Networks (CNNs)** and **Transformers** to automatically generate human-like captions for images.  
 
 This project uses **PyTorch** and provides a pipeline for training, checkpointing, and generating captions using the **COCO 2017 dataset**.  
-
+ fully operational at http://127.0.0.1:7860/
 ---
 
 ## Features
